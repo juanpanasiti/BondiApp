@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BondiApp</string>
+    <string name="monto_saldo">$999.99</string>
+    <string name="fecha_hora_corta">dd-mm-aaaa HH:mm</string>
+    <string name="cant_entero">999</string>
+    <string name="fecha_larga">Miercoles 25 de Noviembre de 2020</string>
+    <string name="item_uv">Último viaje:</string>
+    <string name="item_vr">Viajes restantes:</string>
+    <string name="nuevaTarjeta">Nueva Tarjeta</string>
+</resources>
