@@ -9,17 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Configuracion"></activity>
-        <activity android:name=".CargarSaldo" />
-        <activity android:name=".VerTarjeta" />
-        <activity android:name=".nuevaTarjeta" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".PagarBoleto"></activity>
+        <activity android:name=".VerConsumo" />
+        <activity android:name=".VerInfoViaje" />
+        <activity android:name=".VerViajes" />
+        <activity android:name=".VerInfo" />
+        <activity android:name=".Tarifas" />
+        <activity android:name=".FormParada" />
+        <activity android:name=".VerParada" />
+        <activity android:name=".AgregarMicroAParada" />
+        <activity android:name=".FormMicro" />
+        <activity android:name=".VerMicro" />
+        <activity android:name=".Paradas" />
+        <activity android:name=".Micros" />
+        <activity android:name=".MicrosParadas" />
+        <activity android:name=".Tarjetas" />
+        <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Configuracion" />
+        <activity android:name=".CargarSaldo" />
+        <activity android:name=".VerTarjeta" />
+        <activity android:name=".FormTarjeta" />
     </application>
 
 </manifest>

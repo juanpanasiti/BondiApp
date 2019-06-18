@@ -8,4 +8,12 @@
     <color name="colorText1">#03588C</color>
     <color name="colorText2">#4393D9</color>
     <color name="colorText3">#72C1F2</color>
+    <color name="colorPrimaryB">#007bff</color>
+    <color name="colorSecondaryB">#6c757d</color>
+    <color name="colorSuccessB">#28a745</color>
+    <color name="colorDangerB">#dc3545</color>
+    <color name="colorWarningB">#FFC107</color>
+    <color name="colorInfoB">#17a2b8</color>
+    <color name="colorLightB">#f8f9fa</color>
+    <color name="colorDarkB">#343a40</color>
 </resources>
