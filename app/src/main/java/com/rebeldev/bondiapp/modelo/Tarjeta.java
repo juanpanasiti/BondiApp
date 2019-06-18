@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 public class Tarjeta {
     //Atributos de clase
-    private static final String TABLE_NAME = "tarjetas";
-    private static final String[] COLUMNAS = {"numero", "nombre", "saldo"};
+    private static final String TABLE_NAME = "tarjeta";
+    private static final String[] COLUMNAS = {"numero_tar", "nombre_tar", "saldo_tar"};
 
     //Atributos de objeto
     private String nombre;
-    private int numero;
+    private int numero;//PRIMARY KEY!
     private float saldo;
 
     //Constructores
@@ -61,75 +61,73 @@ public class Tarjeta {
     }
 
     //Métodos con base de datos
-    public boolean create(Context context){
+    public boolean crear(Context context){
         boolean creado = false;
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
 
         ContentValues registro = new ContentValues();
-        registro.put("numero", this.numero);
-        registro.put("nombre", this.nombre);
-        registro.put("saldo", this.saldo);
+        registro.put("numero_tar", this.numero);
+        registro.put("nombre_tar", this.nombre);
+        registro.put("saldo_tar", this.saldo);
+
         try{
-            admin.create(registro,TABLE_NAME);
+            adminDB.create(registro,TABLE_NAME);
             creado = true;
-            Toast.makeText(context, "Nueva tarjeta agregada correctamente.", Toast.LENGTH_SHORT).show();
         }catch (Exception e){
-            Toast.makeText(context, "Error al cargar la tarjeta: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return creado;
-    }//create()
+    }//crear()
 
-    public boolean update(Context context){
+    public boolean actualizar(Context context){
         boolean actualizado = false;
 
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
 
         ContentValues registro = new ContentValues();
-        registro.put("numero", this.numero);
-        registro.put("nombre", this.nombre);
-        registro.put("saldo", this.saldo);
+        registro.put("numero_tar", this.numero);
+        registro.put("nombre_tar", this.nombre);
+        registro.put("saldo_tar", this.saldo);
 
         try{
-            admin.update(registro, TABLE_NAME, "numero=" + this.numero, null);
+            adminDB.update(registro, TABLE_NAME, "numero_tar=" + this.numero, null);
             actualizado = true;
-            Toast.makeText(context, "Tarjeta actualizada correctamente", Toast.LENGTH_SHORT).show();
         }catch (Exception e){
-            Toast.makeText(context, "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return actualizado;
-    }//update()
+    }//actualizar()
 
-    public boolean delete(Context context){
+    public boolean borrar(Context context){
         boolean eliminado = false;
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-        SQLiteDatabase db = admin.getWritableDatabase();
+        AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
         try{
-            admin.delete(TABLE_NAME,"numero=" + this.numero,null);
+            adminDB.delete(TABLE_NAME,"numero_tar=" + this.numero,null);
             eliminado = true;
             Toast.makeText(context, "Tarjeta eliminada correctamente", Toast.LENGTH_SHORT).show();
         }catch (Exception e){
-
+            Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return eliminado;
-    }//delete()
+    }//borrar()
 
     //Métodos estáticos con base de datos
-    public static ArrayList<Tarjeta> getAll(Context context){
+    public static ArrayList<Tarjeta> buscarTodos(Context context){
         ArrayList<Tarjeta> tarjetas = new ArrayList<>();
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context,"bondiapp",null,1);
-        Cursor cursor = admin.findAll(TABLE_NAME,COLUMNAS);
+        AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
+        Cursor cursor = adminDB.findAll(TABLE_NAME,COLUMNAS);
         while (cursor.moveToNext()){
             Tarjeta t = new Tarjeta(cursor.getString(1),cursor.getInt(0));
             t.setSaldo(cursor.getFloat(2));
             tarjetas.add(t);
         }
         return tarjetas;
-    }
+    }//buscarTodos()
 
-    public static Tarjeta findByNum(Context context, int numero){
+    public static Tarjeta buscaPorNum(Context context, int numero){
         Tarjeta tarjeta = new Tarjeta();
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-        Cursor cursor = admin.findByFK(TABLE_NAME,"numero", numero, COLUMNAS);
+        AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
+        Cursor cursor = adminDB.findByFK(TABLE_NAME,"numero_tar", numero, COLUMNAS);
         if(cursor.moveToFirst()){
             tarjeta.setNumero(cursor.getInt(0));
             tarjeta.setNombre(cursor.getString(1));
@@ -141,6 +139,6 @@ public class Tarjeta {
         }
 
         return tarjeta;
-    }
+    }//buscarPorNum
 
 }

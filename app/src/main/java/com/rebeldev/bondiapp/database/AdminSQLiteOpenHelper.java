@@ -30,55 +30,55 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //Tabla TARJETAS
-        String sqlTarjetas = "CREATE TABLE tarjetas(" +
-                                "numero INTEGER PRIMARY KEY," +
-                                "nombre TEXT NOT NULL," +
-                                "saldo REAL" +
+        String sqlTarjetas = "CREATE TABLE tarjeta(" +
+                                "numero_tar INTEGER PRIMARY KEY," +
+                                "nombre_tar TEXT NOT NULL," +
+                                "saldo_tar REAL" +
                                 ")";
 
         //Tabla ABONOS
-        String sqlAbonos = "CREATE TABLE abonos(" +
-                                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                "tipo TEXT NOT NULL," +
-                                "saldo REAL NOT NULL," +
-                                "descuento INTEGER NOT NULL," +
-                                "viajes INTEGER NOT NULL," +
-                                "tarjeta_numero INTEGER NOT NULL" +
+        String sqlAbonos = "CREATE TABLE abono(" +
+                                "id_abo INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                "tipo_abo TEXT NOT NULL," +
+                                "saldo_abo REAL NOT NULL," +
+                                "descuento_abo INTEGER NOT NULL," +
+                                "viajes_abo INTEGER NOT NULL," +
+                                "tarjeta_numero_abo INTEGER NOT NULL" +
                                 ")";
 
         //Tabla BOLETOS
-        String sqlBoletos = "CREATE TABLE boletos(" +
-                                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                "precio REAL NOT NULL," +
-                                "descripcion TEXT NOT NULL" +
+        String sqlBoletos = "CREATE TABLE boleto(" +
+                                "id_bol INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                "precio_bol REAL NOT NULL," +
+                                "descripcion_bol TEXT NOT NULL" +
                                 ")";
         //Tabla MICROS
-        String sqlMicros = "CREATE TABLE micros(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "linea INTEGER," +
-                "color VARCHAR(6) NOT NULL" +
+        String sqlMicros = "CREATE TABLE micro(" +
+                "id_mic INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "linea_mic INTEGER," +
+                "color_mic VARCHAR(6) NOT NULL" +
                 ")";
         //Tabla VIAJES
-        String sqlViajes = "CREATE TABLE viajes(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "micro_id INTEGER NOT NULL," +
-                "tarjeta_numero INTEGER NOT NULL," +
-                "monto_pagado REAL NOT NULL," +
-                "fechayhora TEXT NOT NULL" +
+        String sqlViajes = "CREATE TABLE viaje(" +
+                "id_via INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "micro_id_via INTEGER NOT NULL," +
+                "tarjeta_numero_via INTEGER NOT NULL," +
+                "monto_pagado_via REAL NOT NULL," +
+                "fecha_hora_via TEXT NOT NULL" +
                 ")";
         //Tabla PARADAS
-        String sqlParadas = "CREATE TABLE paradas(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "latitud REAL NOT NULL," +
-                "longitud REAL NOT NULL," +
-                "direccion TEXT NOT NULL," +
-                "fotoPath TEXT" +
+        String sqlParadas = "CREATE TABLE parada(" +
+                "id_par INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "latitud_par REAL NOT NULL," +
+                "longitud_par REAL NOT NULL," +
+                "direccion_par TEXT NOT NULL," +
+                "fotoPath_par TEXT" +
                 ")";
         //Tabla rel MICRO-PARADA
-        String sqlMP = "CREATE TABLE micros_paradas(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "micro_id INTEGER NOT NULL," +
-                "parada_id INTEGER NOT NULL" +
+        String sqlMP = "CREATE TABLE micro_parada(" +
+                "id INTEGER PRIMARY KEY," +
+                "id_mic_mp INTEGER NOT NULL," +
+                "id_par_mp INTEGER NOT NULL" +
                 ")";
         //Tabla MICROS
         //db.execSQL("CREATE TABLE nombre_tabla(nombre_col tipo_col options)");

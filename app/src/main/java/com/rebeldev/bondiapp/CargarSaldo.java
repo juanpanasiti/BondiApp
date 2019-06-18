@@ -15,6 +15,8 @@ public class CargarSaldo extends AppCompatActivity {
     private EditText etCargar;
     private Tarjeta tarjeta;
 
+    private int numeroTarjeta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class CargarSaldo extends AppCompatActivity {
         tvSaldoActual = findViewById(R.id.tvSaldoActual);
         etCargar = findViewById(R.id.etCarga);
 
+        numeroTarjeta = getIntent().getIntExtra("numeroTarjeta",-1);
         setTarjeta();
         tvNombreTarjeta.setText(tarjeta.getNombre() + " #" + tarjeta.getNumero());
         tvSaldoActual.setText("Saldo actual: $" + String.format("%.2f",tarjeta.getSaldo()));
@@ -31,28 +34,28 @@ public class CargarSaldo extends AppCompatActivity {
     }
 
     private void setTarjeta(){
-
-        if(getIntent().getIntExtra("numeroTarjeta",-1) != -1){
-            tarjeta = Tarjeta.findByNum(this,getIntent().getIntExtra("numeroTarjeta",-1));
+        if(numeroTarjeta != -1){
+            tarjeta = Tarjeta.buscaPorNum(this,numeroTarjeta);
         } else {
             tarjeta = new Tarjeta();
             tarjeta.setNumero(-1);
             tarjeta.setNombre("Error");
             tarjeta.setSaldo(-1f);
-            Toast.makeText(this, "Error al cargar tarjeta " + getIntent().getIntExtra("numeroTarjeta",-1), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error al cargar tarjeta " + numeroTarjeta, Toast.LENGTH_SHORT).show();
         }
-    }
+    }//setTarjeta()
 
     public void volver(View v){
         finish();
-    }
+    }//volver()
 
     public void cargar(View v){
         float carga = Float.valueOf(etCargar.getText().toString());
         tarjeta.cargar(carga);
-        tarjeta.update(this);
-        Toast.makeText(this, "Cargaste $" + String.format("%.2f",carga) + ", en total tenés $" + String.format("%.2f",tarjeta.getSaldo()), Toast.LENGTH_SHORT).show();
 
-        finish();
-    }
+        if(tarjeta.actualizar(this)){
+            Toast.makeText(this, "Cargaste $" + String.format("%.2f",carga) + ", en total tenés $" + String.format("%.2f",tarjeta.getSaldo()), Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }//cargar()
 }

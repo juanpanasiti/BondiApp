@@ -28,33 +28,27 @@ public class VerTarjeta extends AppCompatActivity {
         tvNombre = findViewById(R.id.tvNombre);
         tvSaldo = findViewById(R.id.tvSaldo);
         tvNumero = findViewById(R.id.tvNumero);
-
-        numeroTarjeta = getIntent().getIntExtra("numeroTarjeta",0);
-
-        setElementos();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
+        numeroTarjeta = getIntent().getIntExtra("numeroTarjeta",-1);
         setElementos();
     }
 
-
+    //Métodos para botones
     public void volver(View v){
         finish();
     }
 
     public void borrar(View v){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "bondiapp",null,1);
-        SQLiteDatabase db = admin.getWritableDatabase();
-
-        db.delete("tarjetas","numero=" + tarjeta.getNumero(),null);
-        db.close();
-        Toast.makeText(this, "Se eliminó la tarjeta correctamente", Toast.LENGTH_SHORT).show();
-        finish();//Cerrar activity
-    }
+        if(tarjeta.borrar(this)){
+            Toast.makeText(this, "Se eliminó la tarjeta correctamente", Toast.LENGTH_SHORT).show();
+            finish();//Cerrar activity
+        }
+    }//borrar()
 
     public void aCargaSaldo(View v){
         Intent aCarga = new Intent(this, CargarSaldo.class);
@@ -62,8 +56,9 @@ public class VerTarjeta extends AppCompatActivity {
         startActivity(aCarga);
     }
 
+    //Métodos privados
     private void setElementos(){
-        tarjeta = Tarjeta.findByNum(this,getIntent().getIntExtra("numeroTarjeta",-1));
+        tarjeta = Tarjeta.buscaPorNum(this,numeroTarjeta);
 
         //Settear textos a elementos de la vista
         tvNombre.setText(tarjeta.getNombre());
