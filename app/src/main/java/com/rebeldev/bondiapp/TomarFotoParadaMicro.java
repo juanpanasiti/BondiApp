@@ -74,7 +74,7 @@ public class TomarFotoParadaMicro extends AppCompatActivity {
                     });
 
                     Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    parada.setFotoPath(path);
+                    //parada.setFotoPath(path);
                     if(parada.actualizar(this)){
                         //Toast.makeText(this, "Foto de la parada guardada", Toast.LENGTH_SHORT).show();
                     }

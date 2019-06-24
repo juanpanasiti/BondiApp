@@ -38,7 +38,7 @@ public class Paradas extends AppCompatActivity {
         this.direcciones.clear();
         this.paradas = Parada.buscarTodos(this);
         for(Parada par : paradas){
-            this.direcciones.add(par.getDireccion());
+            this.direcciones.add(par.getDireccion() + " (" + par.getCodigo() + ")");
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_paradas, direcciones);

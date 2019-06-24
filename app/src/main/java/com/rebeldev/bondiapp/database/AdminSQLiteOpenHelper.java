@@ -73,7 +73,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "latitud_par REAL," +
                 "longitud_par REAL," +
                 "direccion_par TEXT NOT NULL," +
-                "fotoPath_par TEXT" +
+                "codigo_par TEXT" +
                 ")";
         //Tabla rel MICRO-PARADA
         String sqlMP = "CREATE TABLE micro_parada(" +

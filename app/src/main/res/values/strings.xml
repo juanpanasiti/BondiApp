@@ -31,6 +31,10 @@
     <string name="subtitulo_saldo_act_cs">Saldo actual: $000.00</string>
     <string name="btn_cargar_cs">Cargar</string>
     <!-- Form Micro -->
+    <string name="titulo_form_micro">Form Micros</string>
+    <string name="subtitulo_color_fm">Color</string>
+    <string name="hint_linea_fm">N° línea</string>
+    <string name="hint_descrip_fm">Descripción</string>
     <!--  -->
     <!--  -->
     <!--  -->

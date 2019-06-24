@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class Parada {
     //Atributos de clase
     private static final String TABLE_NAME = "parada";
-    private static final String[] COLUMNAS = {"id_par", "latitud_par", "longitud_par", "direccion_par", "fotoPath_par"};
+    private static final String[] COLUMNAS = {"id_par", "latitud_par", "longitud_par", "direccion_par", "codigo_par"};
 
     //Atributos de objeto
     private int id;
     private double latitud;
     private double longitud;
     private String direccion;
-    private String fotoPath;
+    private String codigo;
 
     //Constructores
     public Parada() {
@@ -27,7 +27,7 @@ public class Parada {
         this.latitud = 0;
         this.longitud = 0;
         this.direccion = "";
-        this.fotoPath = "";
+        this.codigo = "";
     }
 
     //Setters y Getters
@@ -64,12 +64,12 @@ public class Parada {
         this.direccion = direccion;
     }
 
-    public String getFotoPath() {
-        return fotoPath;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setFotoPath(String fotoPath) {
-        this.fotoPath = fotoPath;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     //Metodos con base de datos
@@ -82,7 +82,7 @@ public class Parada {
         registro.put("direccion_par", this.getDireccion());
         registro.put("latitud_par", this.getLatitud());
         registro.put("longitud_par", this.getLongitud());
-        registro.put("fotoPath_par", this.getFotoPath());
+        registro.put("codigo_par", this.getCodigo());
 
         try{
             adminDB.create(registro,TABLE_NAME);
@@ -102,7 +102,7 @@ public class Parada {
         registro.put("latitud_par", this.latitud);
         registro.put("longitud_par", this.longitud);
         registro.put("direccion_par", this.direccion);
-        registro.put("fotoPath_par", this.fotoPath);
+        registro.put("codigo_par", this.codigo);
 
         try{
             adminDB.update(registro, TABLE_NAME, "id_par=" + this.id, null);
@@ -175,7 +175,7 @@ public class Parada {
             p.setLatitud(cursor.getInt(1));
             p.setLongitud(cursor.getInt(2));
             p.setDireccion(cursor.getString(3));
-            p.setFotoPath(cursor.getString(4));
+            p.setCodigo(cursor.getString(4));
             paradas.add(p);
         }
         cursor.close();

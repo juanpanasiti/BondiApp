@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 public class VerParada extends AppCompatActivity {
     private TextView tvTitulo;
+    private TextView tvSubtitulo;
     private Parada parada;
     private ListView lvMicros;
     private ArrayList<MicroParada> relMPs = new ArrayList<>();
@@ -36,6 +37,7 @@ public class VerParada extends AppCompatActivity {
         setContentView(R.layout.activity_ver_parada);
 
         tvTitulo = findViewById(R.id.tvTitulo);
+        tvSubtitulo = findViewById(R.id.tvSubtitulo);
         lvMicros = findViewById(R.id.lvMicros);
         ivVerFoto = findViewById(R.id.ivVerFoto);
         ivTomarFoto = findViewById(R.id.ivTomarFoto);
@@ -48,7 +50,8 @@ public class VerParada extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         parada = Parada.buscaPorID(this,getIntent().getIntExtra("idParada",0));
-        tvTitulo.setText(parada.getDireccion());
+        tvTitulo.setText("Parada " + parada.getCodigo());
+        tvSubtitulo.setText(parada.getDireccion());
         llenarArrays();
         
 
