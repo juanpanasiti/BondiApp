@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 /*
     NULL: El valor es un valor NULL.
     INTEGER: El valor es un entero con signo, almacenado en 1, 2, 3, 4, 6 u 8 bytes dependiendo de la magnitud del valor.
@@ -54,30 +55,30 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                                 ")";
         //Tabla MICROS
         String sqlMicros = "CREATE TABLE micro(" +
-                "id_mic INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "linea_mic INTEGER," +
-                "color_mic VARCHAR(6) NOT NULL" +
+                "linea_mic INTEGER PRIMARY KEY," +
+                "color_mic VARCHAR(7) NOT NULL," +
+                "descr_mic TEXT" +
                 ")";
         //Tabla VIAJES
         String sqlViajes = "CREATE TABLE viaje(" +
                 "id_via INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "micro_id_via INTEGER NOT NULL," +
-                "tarjeta_numero_via INTEGER NOT NULL," +
+                "micro_via TEXT NOT NULL," +
+                "tarjeta_via TEXT NOT NULL," +
                 "monto_pagado_via REAL NOT NULL," +
                 "fecha_hora_via TEXT NOT NULL" +
                 ")";
         //Tabla PARADAS
         String sqlParadas = "CREATE TABLE parada(" +
                 "id_par INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "latitud_par REAL NOT NULL," +
-                "longitud_par REAL NOT NULL," +
+                "latitud_par REAL," +
+                "longitud_par REAL," +
                 "direccion_par TEXT NOT NULL," +
                 "fotoPath_par TEXT" +
                 ")";
         //Tabla rel MICRO-PARADA
         String sqlMP = "CREATE TABLE micro_parada(" +
-                "id INTEGER PRIMARY KEY," +
-                "id_mic_mp INTEGER NOT NULL," +
+                "id_mp INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "linea_mic_mp INTEGER NOT NULL," +
                 "id_par_mp INTEGER NOT NULL" +
                 ")";
         //Tabla MICROS
@@ -100,26 +101,40 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     public void create(ContentValues record, String tableName){
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(tableName,null, record);
+        db.close();
     }
-     public void update(ContentValues record, String tableName, String whereClause, String[] whereArgs){
+     public int update(ContentValues record, String tableName, String whereClause, String[] whereArgs){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(tableName,record,whereClause,whereArgs);
+        int code;
+        code = db.update(tableName,record,whereClause,whereArgs);
+        db.close();
+        return code;
      }
 
      public void delete(String tableName, String whereClause, String[] whereArgs){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(tableName, whereClause, whereArgs);
+        db.close();
      }
 
-     public Cursor findByFK(String tableName, String fk, int fkVal, String[] columns){
+     public Cursor findByField(String tableName, String field, int value, String[] columns){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(tableName, columns, fk + "=" + fkVal, null,null,null,null,"1");
+        Cursor cursor = db.query(tableName, columns, field + "=" + value, null,null,null,null);
+        //db.close();
         return cursor;
      }
      public Cursor findAll(String tableName, String[] columns){
         SQLiteDatabase db = this.getReadableDatabase();
          Cursor cursor = db.query(tableName, columns, null, null,null,null,null);
+         //db.close();
          return cursor;
+     }
+
+     public Cursor exeRawQuery(String rawQuery){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(rawQuery,null);
+
+        return cursor;
      }
 
 }//CLASS

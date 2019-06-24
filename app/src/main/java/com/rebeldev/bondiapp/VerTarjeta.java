@@ -1,5 +1,7 @@
 package com.rebeldev.bondiapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,7 +20,7 @@ public class VerTarjeta extends AppCompatActivity {
     private TextView tvSaldo;
     private TextView tvNumero;
     private int numeroTarjeta;
-    private Tarjeta tarjeta;// = new Tarjeta();
+    private Tarjeta tarjeta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +46,28 @@ public class VerTarjeta extends AppCompatActivity {
     }
 
     public void borrar(View v){
-        if(tarjeta.borrar(this)){
-            Toast.makeText(this, "Se eliminó la tarjeta correctamente", Toast.LENGTH_SHORT).show();
-            finish();//Cerrar activity
-        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Borrar Parada de micro");
+        builder.setMessage("Seguro que desea borrarla?");
+        builder.setPositiveButton("Si",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(tarjeta.borrar(getApplicationContext())){
+                            Toast.makeText(getApplicationContext(), "Se eliminó la tarjeta correctamente", Toast.LENGTH_SHORT).show();
+                            finish();//Cerrar activity
+                        }
+                    }
+                });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }//borrar()
 
     public void aCargaSaldo(View v){

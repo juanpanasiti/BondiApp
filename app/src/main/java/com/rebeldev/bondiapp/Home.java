@@ -15,17 +15,22 @@ public class Home extends AppCompatActivity {
 
     //Acciones a otras activities
     public void aTarjetas(View v){
-        Intent aConfig = new Intent(this, Tarjetas.class);
-        startActivity(aConfig);
+        Intent aTarj = new Intent(this, Tarjetas.class);
+        startActivity(aTarj);
     }
 
-    public void aMicros(View v){
-        Intent aConfig = new Intent(this, Configuracion.class);
-        startActivity(aConfig);
+    public void aMicrosParadas(View v){
+        Intent aMP = new Intent(this, MicrosParadas.class);
+        startActivity(aMP);
     }
 
     public void aTarifas(View v){
-        Intent aConfig = new Intent(this, Configuracion.class);
-        startActivity(aConfig);
+        Intent aTarif = new Intent(this, Tarifas.class);
+        startActivity(aTarif);
+    }
+
+    public void aVerInfo(View v){
+        Intent aInfo = new Intent(this, VerInfo.class);
+        startActivity(aInfo);
     }
 }

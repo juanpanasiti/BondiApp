@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/generalBackground"
-    tools:context=".Micros">
+    tools:context=".FormTarifa">
 
     <TextView
         android:id="@+id/tvTitulo"
@@ -13,11 +13,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Micros"
+        android:text="Form Tarifa"
         android:textColor="@color/colorText1"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorSuccessB"
+        android:onClick="guardar"
+        android:text="Guardar"
+        app:layout_constraintBottom_toTopOf="@+id/btnVolver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnVolver"
@@ -25,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/colorWarningB"
         android:onClick="volver"
         android:text="Volver"
@@ -33,29 +47,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnAgregar"
+    <EditText
+        android:id="@+id/etPrecio"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:background="@color/colorPrimaryB"
-        android:onClick="aFormMicro"
-        android:text="Agregar Micro"
-        app:layout_constraintBottom_toTopOf="@+id/btnVolver"
+        android:ems="10"
+        android:hint="Precio boleto"
+        android:inputType="numberDecimal"
+        android:textColor="@color/colorText2"
+        android:textColorHint="@color/colorDarkB"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
 
-    <ListView
-        android:id="@+id/lvMicros"
+    <EditText
+        android:id="@+id/etDescripcion"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAgregar"
+        android:ems="10"
+        android:hint="Descripción"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorText2"
+        android:textColorHint="@color/colorDarkB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />

@@ -69,4 +69,8 @@ public class Tarjetas extends AppCompatActivity {
         Intent aNuevaTarjeta = new Intent(this, FormTarjeta.class);
         startActivity(aNuevaTarjeta);
     }//agregarTarjeta()
+
+    public void volver(View v){
+        finish();
+    }
 }

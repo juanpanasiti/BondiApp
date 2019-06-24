@@ -127,7 +127,7 @@ public class Tarjeta {
     public static Tarjeta buscaPorNum(Context context, int numero){
         Tarjeta tarjeta = new Tarjeta();
         AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
-        Cursor cursor = adminDB.findByFK(TABLE_NAME,"numero_tar", numero, COLUMNAS);
+        Cursor cursor = adminDB.findByField(TABLE_NAME,"numero_tar", numero, COLUMNAS);
         if(cursor.moveToFirst()){
             tarjeta.setNumero(cursor.getInt(0));
             tarjeta.setNombre(cursor.getString(1));
