@@ -56,8 +56,17 @@ public class Tarjeta {
     }
 
 
-    public void cargar(float carga){
-        this.saldo += carga;
+    public void cargar(float monto){
+        this.saldo += monto;
+    }
+
+    public boolean pagarBoleto(float monto){
+        boolean pagado = false;
+        if(this.saldo >= monto){
+            this.saldo -= monto;
+            pagado = true;
+        }
+        return pagado;
     }
 
     //Métodos con base de datos

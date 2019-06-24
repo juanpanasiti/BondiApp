@@ -48,7 +48,7 @@ public class VerTarjeta extends AppCompatActivity {
     public void borrar(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
-        builder.setTitle("Borrar Parada de micro");
+        builder.setTitle("Borrar tarjeta");
         builder.setMessage("Seguro que desea borrarla?");
         builder.setPositiveButton("Si",
                 new DialogInterface.OnClickListener() {

@@ -33,4 +33,9 @@ public class Home extends AppCompatActivity {
         Intent aInfo = new Intent(this, VerInfo.class);
         startActivity(aInfo);
     }
+
+    public void pagarBoleto(View v){
+        Intent aPagarBoleto = new Intent(this, PagarBoleto.class);
+        startActivity(aPagarBoleto);
+    }
 }
