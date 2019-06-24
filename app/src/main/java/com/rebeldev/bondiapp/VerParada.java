@@ -23,7 +23,8 @@ public class VerParada extends AppCompatActivity {
     private TextView tvTitulo;
     private Parada parada;
     private ListView lvMicros;
-    private ArrayList<Micro> micros = new ArrayList<>();
+    private ArrayList<MicroParada> relMPs = new ArrayList<>();
+    //private ArrayList<Micro> micros = new ArrayList<>();
     private ArrayList<String> nombresMicros = new ArrayList<>();
     private ImageView ivVerFoto;
     private ImageView ivTomarFoto;
@@ -54,10 +55,13 @@ public class VerParada extends AppCompatActivity {
     }//onStart
     //Métodos privados
     private void llenarArrays(){
-        this.micros.clear();
+        //this.micros.clear();
         this.nombresMicros.clear();
-        this.micros = parada.buscarMicros(this);
-        for(Micro micro : micros){
+        this.relMPs = MicroParada.buscarPorParada(this,parada.getID());
+
+        for(MicroParada mp : relMPs){
+            Micro micro = Micro.buscaPorLinea(getApplicationContext(),mp.getLineaMicro());
+
             this.nombresMicros.add(micro.toString());
         }
 
@@ -67,21 +71,36 @@ public class VerParada extends AppCompatActivity {
         lvMicros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent verMicro = new Intent(view.getContext(), VerMicro.class);
-                verMicro.putExtra("lineaMicro", micros.get(position).getLinea());
-                startActivity(verMicro);
+                Intent aPagarBoleto = new Intent(view.getContext(), PagarBoleto.class);
+                startActivity(aPagarBoleto);
             }
         });
         lvMicros.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                ArrayList<MicroParada> mps = MicroParada.buscarPorRelacion(getApplicationContext(),micros.get(position).getLinea(),parada.getID());
-                String ids = "";
-                for(MicroParada mp : mps){
-                    ids.concat(mp.getID()+ " ");
-                }
-                ids = String.valueOf(mps.size());
-                Toast.makeText(VerParada.this, ids, Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(VerParada.this);
+                builder.setCancelable(true);
+                builder.setTitle("Borrar relacion con el micro");
+                builder.setMessage("Seguro que desea borrarla?");
+                builder.setPositiveButton("Si",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(relMPs.get(position).borrar(VerParada.this)){
+                                    Toast.makeText(getApplicationContext(), "Relacion con el micro eliminada", Toast.LENGTH_SHORT).show();
+                                    llenarArrays();
+                                }
+
+                            }
+                        });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return true;
             }
         });
