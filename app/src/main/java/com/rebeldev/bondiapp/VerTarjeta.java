@@ -74,7 +74,13 @@ public class VerTarjeta extends AppCompatActivity {
         Intent aCarga = new Intent(this, CargarSaldo.class);
         aCarga.putExtra("numeroTarjeta", this.tarjeta.getNumero());
         startActivity(aCarga);
-    }
+    }//aCargaSaldo()
+
+    public void pagarBoleto(View v){
+        Intent aPagar = new Intent(this,PagarBoleto.class);
+        aPagar.putExtra("numeroTarjeta",tarjeta.getNumero());
+        startActivity(aPagar);
+    }//pagarBoleto()
 
     //Métodos privados
     private void setElementos(){
