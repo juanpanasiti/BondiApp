@@ -113,10 +113,29 @@ public class VerMicro extends AppCompatActivity {
         startActivity(aPagoBoleto);
     }
     public void borrar(View v){
-        if(micro.borrar(this)){
-            Toast.makeText(this, "Micro eliminado", Toast.LENGTH_SHORT).show();
-            finish();
-        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Borrar micro");
+        builder.setMessage("Seguro que desea borrarlo?");
+        builder.setPositiveButton("Si",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(micro.borrar(VerMicro.this)){
+                            Toast.makeText(VerMicro.this, "Micro eliminado", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+
+                    }
+                });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }//borrar()
 
     public void volver(View v){
