@@ -43,10 +43,10 @@ public class FormTarjeta extends AppCompatActivity {
 
             if (tarjeta.crear(this)){
                 Toast.makeText(this, "Tarjeta agregada correctamente", Toast.LENGTH_SHORT).show();
+                finish();
             }
         } else {
             Toast.makeText(this, "Debe llenar todos los campos.", Toast.LENGTH_SHORT).show();
         }
-        finish();
     }//agregar()
 }

@@ -73,17 +73,20 @@ public class Tarjeta {
     public boolean crear(Context context){
         boolean creado = false;
         AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
+        if(adminDB.findByField(TABLE_NAME,"numero_tar", numero, null).getCount() == 0){
+            ContentValues registro = new ContentValues();
+            registro.put("numero_tar", this.numero);
+            registro.put("nombre_tar", this.nombre);
+            registro.put("saldo_tar", this.saldo);
 
-        ContentValues registro = new ContentValues();
-        registro.put("numero_tar", this.numero);
-        registro.put("nombre_tar", this.nombre);
-        registro.put("saldo_tar", this.saldo);
-
-        try{
-            adminDB.create(registro,TABLE_NAME);
-            creado = true;
-        }catch (Exception e){
-            Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            try{
+                adminDB.create(registro,TABLE_NAME);
+                creado = true;
+            }catch (Exception e){
+                Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(context, "Ya existe una tarjeta con ese número", Toast.LENGTH_SHORT).show();
         }
         return creado;
     }//crear()
