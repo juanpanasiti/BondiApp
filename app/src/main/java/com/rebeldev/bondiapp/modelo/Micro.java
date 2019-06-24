@@ -76,16 +76,20 @@ public class Micro {
         boolean creado = false;
         AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
 
-        ContentValues registro = new ContentValues();
-        registro.put("linea_mic", this.getLinea());
-        registro.put("color_mic", this.getColor());
-        registro.put("descr_mic", this.getDescripcion());
+        if(adminDB.findByField(TABLE_NAME,"linea_mic", linea, null).getCount() == 0){
+            ContentValues registro = new ContentValues();
+            registro.put("linea_mic", this.getLinea());
+            registro.put("color_mic", this.getColor());
+            registro.put("descr_mic", this.getDescripcion());
 
-        try{
-            adminDB.create(registro,TABLE_NAME);
-            creado = true;
-        }catch (Exception e){
-            Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            try{
+                adminDB.create(registro,TABLE_NAME);
+                creado = true;
+            }catch (Exception e){
+                Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(context, "Ya existe un micro con ese número de línea", Toast.LENGTH_SHORT).show();
         }
         adminDB.close();
         return creado;

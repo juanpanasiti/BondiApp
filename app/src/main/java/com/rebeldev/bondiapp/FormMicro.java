@@ -62,8 +62,8 @@ public class FormMicro extends AppCompatActivity {
             micro.setDescripcion(descripcion);
             if(micro.crear(this)){
                 Toast.makeText(this, "Creado micro linea " + linea + " " + descripcion + " " + color, Toast.LENGTH_SHORT).show();
+                finish();
             }
-        finish();
         } else {
             Toast.makeText(this, "La linea es un campo obligatorio", Toast.LENGTH_SHORT).show();
         }
