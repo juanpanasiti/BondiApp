@@ -28,7 +28,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorWarningB"
         android:onClick="volver"
-        android:text="Volver"
+        android:text="@string/btn_volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -42,7 +42,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorSuccessB"
         android:onClick="guardar"
-        android:text="Guardar"
+        android:text="@string/btn_guardar"
         app:layout_constraintBottom_toTopOf="@+id/btnVolver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

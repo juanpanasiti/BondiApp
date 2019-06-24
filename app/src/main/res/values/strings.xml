@@ -7,4 +7,37 @@
     <string name="item_uv">Último viaje:</string>
     <string name="item_vr">Viajes restantes:</string>
     <string name="nuevaTarjeta">Nueva Tarjeta</string>
+
+    <!-- Genéricos -->
+    <string name="btn_guardar">Guardar</string>
+    <string name="btn_editar">Editar</string>
+    <string name="btn_volver">Volver</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_borrar">Borrar</string>
+    <string name="btn_pagar">Pagar</string>
+    <string name="btn_pagar_boleto">Pagar boleto</string>
+    <!-- Ver Parada -->
+    <string name="titulo_parada">Parada M####</string>
+    <string name="subtitulo_parada">Dirección/descripción</string>
+    <string name="descrip_ver_foto">Ver foto de la parada del micro</string>
+    <string name="descrip_tomar_foto">Sacar una foto de la parada del micro</string>
+    <string name="btn_agregar_micro">Agregar micro</string>
+    <!-- Agregar micro a la parada -->
+    <string name="titulo_agreg_mic_par">Agregar micro a la parada</string>
+    <!-- Cargar saldo -->
+    <string name="titulo_cargar_saldo">Cargar saldo</string>
+    <string name="hint_monto_cs">000.00</string>
+    <string name="subtitulo_nom_tar_cs">TarjetaNombre - numero</string>
+    <string name="subtitulo_saldo_act_cs">Saldo actual: $000.00</string>
+    <string name="btn_cargar_cs">Cargar</string>
+    <!-- Form Micro -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
 </resources>
