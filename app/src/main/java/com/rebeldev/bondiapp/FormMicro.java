@@ -36,7 +36,7 @@ public class FormMicro extends AppCompatActivity {
         tvTitulo.setText("Nuevo Micro");
         llenarColores();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, coloresNombre);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.spinner_item_colores_micros, coloresNombre);
 
         spColores.setAdapter(adapter);
     }//onCreate()
