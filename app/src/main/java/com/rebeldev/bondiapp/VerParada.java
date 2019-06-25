@@ -1,5 +1,6 @@
 package com.rebeldev.bondiapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,6 +24,7 @@ public class VerParada extends AppCompatActivity {
     private TextView tvTitulo;
     private TextView tvSubtitulo;
     private Parada parada;
+    private int idParada;
     private ListView lvMicros;
     private ArrayList<MicroParada> relMPs = new ArrayList<>();
     //private ArrayList<Micro> micros = new ArrayList<>();
@@ -41,6 +43,7 @@ public class VerParada extends AppCompatActivity {
         lvMicros = findViewById(R.id.lvMicros);
         ivVerFoto = findViewById(R.id.ivVerFoto);
         ivTomarFoto = findViewById(R.id.ivTomarFoto);
+        idParada = getIntent().getIntExtra("idParada",0);
 
     }//onCreate()
 
@@ -49,7 +52,7 @@ public class VerParada extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        parada = Parada.buscaPorID(this,getIntent().getIntExtra("idParada",0));
+        parada = Parada.buscaPorID(this,idParada);
         tvTitulo.setText("Parada " + parada.getCodigo());
         tvSubtitulo.setText(parada.getDireccion());
         llenarArrays();
@@ -110,8 +113,12 @@ public class VerParada extends AppCompatActivity {
     //Metodos botones
     public void aFormParada(View v){
         Intent aFP = new Intent(this, FormParada.class);
+        aFP.putExtra("idParada",parada.getID());
         startActivity(aFP);
-    }
+        //startActivityForResult(aFP,1);
+    }//aFormParada()
+
+
 
     public void borrar(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

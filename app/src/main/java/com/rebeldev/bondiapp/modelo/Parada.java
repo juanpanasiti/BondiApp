@@ -92,22 +92,25 @@ public class Parada {
         return creado;
     }//crear()
 
-    public boolean actualizar(Context context){
+    public boolean actualizar(Context context, int idParada){
         boolean actualizado = false;
 
         AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
 
         ContentValues registro = new ContentValues();
-        registro.put("latitud_par", this.latitud);
-        registro.put("longitud_par", this.longitud);
-        registro.put("direccion_par", this.direccion);
-        registro.put("codigo_par", this.codigo);
+        registro.put("direccion_par", this.getDireccion());
+        registro.put("latitud_par", this.getLatitud());
+        registro.put("longitud_par", this.getLongitud());
+        registro.put("codigo_par", this.getCodigo());
 
         try{
-            adminDB.update(registro, TABLE_NAME, "id_par=" + this.id, null);
+            Toast.makeText(context, "" + idParada, Toast.LENGTH_SHORT).show();
+            adminDB.update(registro, TABLE_NAME, "id_par="+idParada, null);
             actualizado = true;
         }catch (Exception e){
             Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } finally {
+            adminDB.close();
         }
         return actualizado;
     }//actualizar()
@@ -186,7 +189,9 @@ public class Parada {
         AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
         Cursor cursor = adminDB.findByField(TABLE_NAME,"id_par", id, COLUMNAS);
         if(cursor.moveToFirst()){
-            parada.setID(cursor.getInt(0));
+            parada.setID(id);
+            parada.setLatitud(cursor.getInt(1));
+            parada.setLongitud(cursor.getInt(2));
             parada.setDireccion(cursor.getString(3));
             parada.setCodigo(cursor.getString(4));
         } else {
