@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class VerMicro extends AppCompatActivity {
     private TextView tvTitulo;
+    private TextView tvSubtitulo;
     private ImageView ivColorLine;
     private ListView lvParadas;
     private ArrayList<String> nombresPar;
@@ -37,6 +38,7 @@ public class VerMicro extends AppCompatActivity {
 
         ivColorLine = findViewById(R.id.ivColorLine);
         tvTitulo = findViewById(R.id.tvTitulo);
+        tvSubtitulo = findViewById(R.id.tvSubtitulo);
         lvParadas = findViewById(R.id.lvParadas);
         nombresPar = new ArrayList<>();
         lineaMicro = getIntent().getIntExtra("lineaMicro",-1);
@@ -47,7 +49,8 @@ public class VerMicro extends AppCompatActivity {
         super.onStart();
         micro = Micro.buscaPorLinea(this,lineaMicro);
         ivColorLine.setColorFilter(Color.parseColor(micro.getColorHexa()));
-        tvTitulo.setText(micro.toString());
+        tvTitulo.setText(micro.getLinea() + " (" + micro.getColor() + ")");
+        tvSubtitulo.setText(micro.getDescripcion());
         llenarListView();
     }//onStart
 
