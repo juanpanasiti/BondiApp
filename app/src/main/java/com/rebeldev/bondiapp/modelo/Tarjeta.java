@@ -102,10 +102,12 @@ public class Tarjeta {
         registro.put("saldo_tar", this.saldo);
 
         try{
-            adminDB.update(registro, TABLE_NAME, "numero_tar=" + this.numero, null);
+            adminDB.update(registro, TABLE_NAME, "numero_tar="+this.numero, null);
             actualizado = true;
         }catch (Exception e){
             Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } finally {
+            adminDB.close();
         }
         return actualizado;
     }//actualizar()

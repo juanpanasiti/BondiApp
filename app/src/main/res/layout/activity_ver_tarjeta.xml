@@ -26,12 +26,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/colorWarningB"
         android:onClick="volver"
-        android:text="Volver"
+        android:text="@string/btn_volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnEditar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorWarningB"
+        android:onClick="editarTarjeta"
+        android:text="@string/btn_editar"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -57,7 +72,7 @@
         android:layout_marginTop="8dp"
         android:text="#######"
         android:textColor="@color/colorText2"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 
@@ -70,7 +85,7 @@
         android:background="@color/colorDangerB"
         android:onClick="borrar"
         android:paddingLeft="5dp"
-        android:text="Borrar Tarjeta"
+        android:text="@string/btn_borrar"
         android:textColor="#660000"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnCargarSalso"
@@ -82,12 +97,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/colorSuccessB"
         android:onClick="aCargaSaldo"
-        android:text="Cargar Saldo"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        android:text="@string/titulo_cargar_saldo"
+        app:layout_constraintBottom_toTopOf="@+id/btnEditar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -98,7 +114,7 @@
         android:layout_marginBottom="32dp"
         android:background="@color/colorSuccessB"
         android:onClick="pagarBoleto"
-        android:text="Pagar boleto"
+        android:text="@string/btn_pagar_boleto"
         app:layout_constraintBottom_toTopOf="@+id/btnCargarSalso"
         app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

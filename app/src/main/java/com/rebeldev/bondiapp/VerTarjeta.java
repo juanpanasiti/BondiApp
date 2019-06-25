@@ -82,6 +82,12 @@ public class VerTarjeta extends AppCompatActivity {
         startActivity(aPagar);
     }//pagarBoleto()
 
+    public void editarTarjeta(View v){
+        Intent aEditar = new Intent(this, FormTarjeta.class);
+        aEditar.putExtra("numTarjeta",tarjeta.getNumero());
+        startActivity(aEditar);
+    }//editarTarjeta()
+
     //Métodos privados
     private void setElementos(){
         tarjeta = Tarjeta.buscaPorNum(this,numeroTarjeta);

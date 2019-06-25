@@ -30,12 +30,15 @@ public class Tarjetas extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        nombres.clear();
+
         llenarNombres();
     }//onStart()
 
     //Metodos privados
     private void llenarNombres(){
+        nombres.clear();
+        tarjetas.clear();
+
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"bondiapp",null,1);
         SQLiteDatabase db = admin.getReadableDatabase();
 
@@ -67,6 +70,7 @@ public class Tarjetas extends AppCompatActivity {
     //Métodos para botones
     public void agregarTarjeta(View v){
         Intent aNuevaTarjeta = new Intent(this, FormTarjeta.class);
+        aNuevaTarjeta.putExtra("numTarjeta",0);
         startActivity(aNuevaTarjeta);
     }//agregarTarjeta()
 

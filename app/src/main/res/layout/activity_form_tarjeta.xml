@@ -8,12 +8,12 @@
     tools:context=".FormTarjeta">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvTitulo"
         style="@style/Widget.AppCompat.TextView.SpinnerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/nuevaTarjeta"
         android:textColor="@color/colorText1"
         android:textSize="30sp"
@@ -26,34 +26,35 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Número de la tarjeta"
         android:inputType="number"
         android:singleLine="true"
         android:textColor="@color/colorText2"
-        android:textColorHint="@color/colorText3"
+        android:textColorHint="@color/colorDarkB"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
 
     <EditText
         android:id="@+id/etNombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Nombre, ej: Abono facu"
         android:inputType="textPersonName"
         android:singleLine="true"
         android:textColor="@color/colorText2"
-        android:textColorHint="@color/colorText3"
+        android:textColorHint="@color/colorDarkB"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNumero" />
 
@@ -62,36 +63,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="64dp"
         android:background="@color/colorSuccessB"
-        android:onClick="agregar"
+        android:onClick="guardar"
         android:text="Guardar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/etSaldo" />
 
     <Button
         android:id="@+id/btnLimpiar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorWarningB"
         android:onClick="limpiarForm"
         android:text="Limpiar"
         app:layout_constraintEnd_toStartOf="@+id/btnCancelar"
         app:layout_constraintStart_toEndOf="@+id/btnGuardar"
-        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/etSaldo" />
 
     <Button
         android:id="@+id/btnCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorDangerB"
         android:onClick="volver"
         android:text="Cancelar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSaldo" />
+
+    <EditText
+        android:id="@+id/etSaldo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:gravity="right"
+        android:hint="Saldo"
+        android:inputType="numberDecimal"
+        android:numeric="decimal"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:text="0.00"
+        android:textColor="@color/colorText2"
+        android:textColorHint="@color/colorDarkB"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNombre" />
 </android.support.constraint.ConstraintLayout>
