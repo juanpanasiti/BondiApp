@@ -93,7 +93,28 @@ public class Micro {
         }
         adminDB.close();
         return creado;
-    }//crear()
+    }//crear
+
+    public boolean actualizar(Context context, int lineaMicro){
+        boolean actualizado = false;
+
+        AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
+
+        ContentValues registro = new ContentValues();
+        registro.put("linea_mic", this.getLinea());
+        registro.put("color_mic", this.getColor());
+        registro.put("descr_mic", this.getDescripcion());
+
+        try{
+            adminDB.update(registro, TABLE_NAME, "linea_mic="+lineaMicro, null);
+            actualizado = true;
+        }catch (Exception e){
+            Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } finally {
+            adminDB.close();
+        }
+        return actualizado;
+    }//actualizar()
 
     public boolean borrar(Context context){
         boolean eliminado = false;

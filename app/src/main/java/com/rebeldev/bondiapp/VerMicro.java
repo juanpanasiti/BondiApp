@@ -1,5 +1,6 @@
 package com.rebeldev.bondiapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +28,7 @@ public class VerMicro extends AppCompatActivity {
     private ArrayList<String> nombresPar;
 
     private Micro micro;
+    private int lineaMicro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +39,13 @@ public class VerMicro extends AppCompatActivity {
         tvTitulo = findViewById(R.id.tvTitulo);
         lvParadas = findViewById(R.id.lvParadas);
         nombresPar = new ArrayList<>();
+        lineaMicro = getIntent().getIntExtra("lineaMicro",-1);
     }//onCreate()
 
     @Override
     protected void onStart() {
         super.onStart();
-        micro = Micro.buscaPorLinea(this,getIntent().getIntExtra("lineaMicro",-1));
+        micro = Micro.buscaPorLinea(this,lineaMicro);
         ivColorLine.setColorFilter(Color.parseColor(micro.getColorHexa()));
         tvTitulo.setText(micro.toString());
         llenarListView();
@@ -104,8 +107,21 @@ public class VerMicro extends AppCompatActivity {
     //Metodos botones
     public void aFormMicro(View v){
         Intent aFM = new Intent(this, FormMicro.class);
-        startActivity(aFM);
+        aFM.putExtra("lineaMicro",micro.getLinea());
+        //startActivity(aFM);
+        startActivityForResult(aFM,1);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                lineaMicro = data.getIntExtra("lineaMicro",-1);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult()
 
     public void pagar(View v){
         //finish();
