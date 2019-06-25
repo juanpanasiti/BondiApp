@@ -73,7 +73,6 @@ public class Parada {
     }
 
     //Metodos con base de datos
-    //Columnas en la DB: id_par, latitud_par, longitud_par, direccion_par, fotoPath_par
     public boolean crear(Context context){
         boolean creado = false;
         AdminSQLiteOpenHelper adminDB = new AdminSQLiteOpenHelper(context);
@@ -189,6 +188,7 @@ public class Parada {
         if(cursor.moveToFirst()){
             parada.setID(cursor.getInt(0));
             parada.setDireccion(cursor.getString(3));
+            parada.setCodigo(cursor.getString(4));
         } else {
             parada.setID(0);
             parada.setDireccion("Error");

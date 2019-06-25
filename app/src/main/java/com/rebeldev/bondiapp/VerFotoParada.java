@@ -2,6 +2,7 @@ package com.rebeldev.bondiapp;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,7 +38,10 @@ public class VerFotoParada extends AppCompatActivity {
         try{
             if((new File(path)).exists()){
                 Bitmap bitmap = BitmapFactory.decodeFile(path);
-                ivFotoParada.setImageBitmap(bitmap);
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+                ivFotoParada.setImageBitmap(rotatedBitmap);
             }
         } catch (Exception e){
             Toast.makeText(this, "Error al mostrar la imagen: " + e.getMessage(), Toast.LENGTH_SHORT).show();

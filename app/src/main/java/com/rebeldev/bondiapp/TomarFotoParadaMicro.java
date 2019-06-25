@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -74,11 +75,10 @@ public class TomarFotoParadaMicro extends AppCompatActivity {
                     });
 
                     Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    //parada.setFotoPath(path);
-                    if(parada.actualizar(this)){
-                        //Toast.makeText(this, "Foto de la parada guardada", Toast.LENGTH_SHORT).show();
-                    }
-                    ivFoto.setImageBitmap(bitmap);
+                    Matrix matrix = new Matrix();
+                    matrix.postRotate(90);
+                    Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+                    ivFoto.setImageBitmap(rotatedBitmap);
 
                     break;
             }

@@ -58,7 +58,6 @@ public class VerParada extends AppCompatActivity {
     }//onStart
     //Métodos privados
     private void llenarArrays(){
-        //this.micros.clear();
         this.nombresMicros.clear();
         this.relMPs = MicroParada.buscarPorParada(this,parada.getID());
 
